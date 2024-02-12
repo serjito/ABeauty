@@ -37,14 +37,6 @@ function Hero() {
           <Button onClick={toggleContact} />
         </div>
         {showContact && <Contact onClose={toggleContact} />}
-        <div className="flex justify-center items-center">
-          <h3 className="text-center">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis
-            dolor numquam, totam doloremque id nam perspiciatis ut quae laborum
-            cumque repellat minima magni iure ea a animi repudiandae vel et.
-          </h3>
-          C
-        </div>
       </div>
     </section>
   );
