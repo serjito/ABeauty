@@ -32,10 +32,8 @@ function Hero() {
           className="object-cover h-full w-full"
         ></Image>
       </div>
-      <div className="flex flex-col justify-center items-center space-y-4">
-        <div className="w-full flex items-center justify-center">
-          <Button onClick={toggleContact} />
-        </div>
+      <div className="w-full flex flex-col justify-center items-center">
+        <Button onClick={toggleContact} />
         {showContact && <Contact onClose={toggleContact} />}
       </div>
     </section>
