@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f2f6fe;
+}
+
+label,
+textarea {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 200;
+  font-size: 1.2em;
+  color: white;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+p {
+  color: rgba(0, 0, 0);
+  line-height: 1.4;
+  margin-bottom: 1em;
+  font-weight: 400;
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  padding: 1rem;
+}
+
+p strong {
+  color: #d4a056;
+  font-weight: 700;
+}
+li {
+  display: flex;
+  margin-left: 2px;
+}
+
+@keyframes parpadea {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+.animate-parpadea {
+  animation: parpadea 3s ease infinite;
+}
