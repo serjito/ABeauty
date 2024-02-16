@@ -24,7 +24,7 @@ function Hero() {
         </h1>
         <h3 className="text-center">
           &quot; Potencia tu presencia en línea y atrae a más clientes con la
-          ayuda de una agencia de marketing especializada en belleza”
+          ayuda de una agencia de marketing especializada en belleza”.
         </h3>
         <Image
           src={bg}
