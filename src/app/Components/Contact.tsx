@@ -5,25 +5,17 @@ import { Toaster, toast } from 'sonner';
 import { z } from 'zod';
 import { sendEmail } from '@/libs/sendEmail';
 import { BiCheck } from 'react-icons/bi';
-import {
-  AnimatePresence,
-  MotionConfig,
-  motion,
-  useMotionValue,
-} from 'framer-motion';
-
-import { useState } from 'react';
+import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
 import { MdClose } from 'react-icons/md';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const userSchema = z.object({
   name: z
     .string()
     .min(1, { message: 'Debe contener al menos 1 caracteres' })
     .max(100, { message: 'No debe contener más de 100 caracteres' }),
-  telephone: z
-    .number()
-    .min(1, { message: 'Debe contener al menos 1 caracteres' })
-    .max(100, { message: 'No debe contener más de 15 caracteres' }),
+  telephone: z.number().int(),
   email: z.string().email({
     message: 'Debe contener un email válido',
   }),
@@ -37,6 +29,7 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ onClose }) => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -45,21 +38,27 @@ const Contact: React.FC<ContactProps> = ({ onClose }) => {
   } = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
   });
+
   const onSubmit = async (values: z.infer<typeof userSchema>) => {
     try {
       await sendEmail({ ...values });
-
       toast('Correo enviado correctamente', {
         description: 'Gracias por ponerse en contacto con nosotros',
         icon: <BiCheck style={{ color: 'green', fontSize: '1rem' }} />,
       });
+      const response = await axios.post('/api/register', values);
+      if (response.status === 200) {
+        router.push('/video');
+      } else {
+        throw new Error('Error al guardar los datos');
+      }
       reset();
     } catch (error) {
       toast.error((error as Error).message);
     }
   };
   return (
-    <div>
+    <div className="w-full h-full">
       <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
         <AnimatePresence>
           <motion.div
@@ -72,10 +71,10 @@ const Contact: React.FC<ContactProps> = ({ onClose }) => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
-              className="bg-gradient-to-t from-[#9958cc] to-[#6c71e5] w-[95%] h-[80vh] top-0 p-4 rounded-2xl flex flex-col justify-center items-center py-8 z-[90]"
+              className="bg-gradient-to-t from-[#9958cc] to-[#6c71e5] w-[95%] h-auto top-0  rounded-2xl flex flex-col justify-center items-center py-3 px-3 z-[90]"
             >
-              <div className="w-full flex flex-col mb-3">
-                <div className="w-full flex justify-end items-center my-3">
+              <div className="w-full flex flex-col">
+                <div className="w-full flex justify-end items-center my-1">
                   <button>
                     <MdClose
                       onClick={onClose}
@@ -84,21 +83,21 @@ const Contact: React.FC<ContactProps> = ({ onClose }) => {
                         color: '#d4a056',
                         backgroundColor: 'rgba(255, 255, 255,0.9)',
                         borderRadius: '50%',
-                        marginRight: '.5rem',
+                        marginRight: '.2rem',
                         cursor: 'pointer',
                       }}
                     />
                   </button>
                 </div>
-                <div className="w-full flex flex-col items-center justify-center my-2">
-                  <h2 className=" text-center text-xl md:text-2xl px-1 font-semibold text-white text-pretty">
+                <div className="w-full flex flex-col items-center justify-center">
+                  <h2 className=" text-center text-lg md:text-2xl px-1 font-semibold text-white text-pretty">
                     ¡Deslumbra en el Mundo Digital! Descubre los Secretos para
                     Impulsar tu Peluquería
                   </h2>
                 </div>
               </div>
 
-              <div className="z-50 w-full md:w-[70%] lg:w-[40%] h-[80%] flex flex-col items-center justify-center mb-4 bg-black/30 rounded-3xl px-1 py-4 mx-auto my-1">
+              <div className="z-50 w-full md:w-[70%] lg:w-[40%] h-auto flex flex-col items-center justify-center mb-4 bg-black/30 rounded-3xl px-1 py-4 mx-auto my-1">
                 <form onSubmit={handleSubmit(onSubmit)} className="px-1">
                   <label htmlFor="name">Nombre*</label>
                   <input
@@ -114,10 +113,14 @@ const Contact: React.FC<ContactProps> = ({ onClose }) => {
                   )}
                   <label htmlFor="telephone">Teléfono*</label>
                   <input
-                    type="text"
+                    type="tel"
                     id="telephone"
-                    autoComplete="family-name"
-                    {...register('telephone')}
+                    inputMode="numeric"
+                    autoComplete="off"
+                    {...register('telephone', {
+                      valueAsNumber: true,
+                      setValueAs: (value: string) => Number(value), // Convertir el valor a número
+                    })}
                   />{' '}
                   {errors.telephone && (
                     <span className="text-red-500 text-xs">

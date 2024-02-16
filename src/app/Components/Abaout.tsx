@@ -12,7 +12,7 @@ function Abaout() {
   return (
     <section className=" w-[95%] max-w-[1200px]  mx-auto my-3 flex flex-col items-center justify-center ">
       <div className="flex flex-col">
-        <h2 className="text-center text-3xl px-1  text-pretty font-bold">
+        <h2 className="text-center text-4xl px-1  text-pretty font-bold">
           Somos Agencia Beauty
         </h2>
         <p>
