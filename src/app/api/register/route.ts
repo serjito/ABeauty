@@ -1,41 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { connectDB } from '@/utils/mongoose';
+import connectDB from '@/utils/mongoose';
 import Register from '@/models/Register';
 
-export async function GET() {
-  connectDB();
-  const register = await Register.find();
-  return NextResponse.json(register);
-}
-
-export async function POST(request: NextRequest) {
+export const POST = async (req: NextRequest, res: NextResponse) => {
+  await connectDB();
   try {
-    const data = await request.json();
-    const newRegister = new Register(data);
-    const savedRegister = await newRegister.save();
-    return NextResponse.json({
-      message: 'creenado',
-    });
+    const body = await req.json();
+    const newRegister = await Register.create(body);
+    return NextResponse.json({ data: newRegister }, { status: 200 });
   } catch (error) {
-    if (error instanceof Error) {
-      return NextResponse.json(
-        {
-          message: error.message,
-        },
-        {
-          status: 400,
-        }
-      );
-    } else {
-      return NextResponse.json(
-        {
-          message: 'Hubo un error desconocido',
-        },
-        {
-          status: 400,
-        }
-      );
-    }
+    return NextResponse.json({ data: null }, { status: 500 });
   }
-}
+};
+
+export const GET = async (req: NextRequest, res: NextResponse) => {
+  await connectDB();
+  try {
+    const result = await Register.find({});
+    return NextResponse.json({ data: result }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ data: null }, { status: 500 });
+  }
+};

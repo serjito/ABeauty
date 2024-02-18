@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { connectDB } from '@/utils/mongoose';
+import connectDB from '@/utils/mongoose';
 import Register from '@/models/Register';
 
 interface Params {

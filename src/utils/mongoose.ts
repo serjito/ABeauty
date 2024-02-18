@@ -1,27 +1,12 @@
-import { connect, connection, ConnectionStates } from 'mongoose';
+import mongoose, { connect, connection, ConnectionStates } from 'mongoose';
 
-const conn = {
-  isConnected: false,
+mongoose.set('strictQuery', false);
+
+const connectDB = async () => {
+  if (!process.env.MONGODB_KEY) {
+    throw new Error('MONGODB_KEY is not set in the environment variables');
+  }
+  return await mongoose.connect(process.env.MONGODB_KEY);
 };
 
-export async function connectDB() {
-  if (conn.isConnected) return;
-
-  const mongoDbKey = process.env.MONGODB_KEY;
-  if (!mongoDbKey) {
-    throw new Error('La variable de entorno MONGODB_KEY no está definida');
-  }
-
-  const db = await connect(mongoDbKey);
-  console.log(db.connection.db.databaseName);
-  conn.isConnected =
-    db.connections[0].readyState === ConnectionStates.connected;
-}
-
-connection.on('connected', () => {
-  console.log('mongoose is connected');
-});
-
-connection.on('error', err => {
-  console.log('Mongoose connection error', err);
-});
+export default connectDB;
