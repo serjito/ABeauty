@@ -3,23 +3,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/utils/mongoose';
 import Register from '@/models/Register';
 
-export const POST = async (req: NextRequest, res: NextResponse) => {
+export async function GET() {
   await connectDB();
-  try {
-    const body = await req.json();
-    const newRegister = await Register.create(body);
-    return NextResponse.json({ data: newRegister }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ data: null }, { status: 500 });
-  }
-};
+  const registers = await Register.find();
+  return NextResponse.json(registers);
+}
 
-export const GET = async (req: NextRequest, res: NextResponse) => {
+export async function POST(request: NextRequest) {
   await connectDB();
-  try {
-    const result = await Register.find({});
-    return NextResponse.json({ data: result }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ data: null }, { status: 500 });
-  }
-};
+  const data = await request.json();
+  const registers = await Register.create(data);
+  return NextResponse.json(registers);
+}
