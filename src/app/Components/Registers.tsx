@@ -10,6 +10,15 @@ import {
 } from '@/components/ui/table';
 import Register from '@/models/Register';
 import connectDB from '@/utils/mongoose';
+import axios from 'axios';
+
+interface Registers {
+  _id: string;
+  name: string;
+  email: string;
+  telephone: number;
+  terms: boolean;
+}
 
 async function loadRegisters() {
   connectDB();
@@ -17,8 +26,26 @@ async function loadRegisters() {
   return registers;
 }
 
+async function deleteRegister(id: string) {
+  connectDB();
+  await Register.deleteOne({ _id: id });
+}
+
 async function Registers() {
   const registers = await loadRegisters();
+
+  const handleDelete = async (id: string) => {
+    if (window.confirm('Are you sure you want to delete')) {
+      try {
+        await deleteRegister(id);
+        // Refresh the list of registers after deletion
+        const updatedRegisters = await loadRegisters();
+        return updatedRegisters;
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4 my-4 bg-zinc-900 rounded-lg text-zinc-100">
@@ -51,8 +78,11 @@ async function Registers() {
                 </button>{' '}
               </TableCell>
               <TableCell className="text-center">
-                <button className="bg-red-500 rounded-xl py-2 px-2">
-                  EDITAR
+                <button
+                  onClick={() => handleDelete(register._id)}
+                  className="bg-red-500 rounded-xl py-2 px-2"
+                >
+                  ELIMINAR
                 </button>
               </TableCell>
             </TableRow>
