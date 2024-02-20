@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/table';
 import Register from '@/models/Register';
 import connectDB from '@/utils/mongoose';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -30,25 +31,20 @@ function Registros() {
   const [registers, setRegisters] = useState<Registers[]>([]);
 
   useEffect(() => {
-    fetch('/api/register')
+    axios
+      .get('/api/register')
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
+        setRegisters(response.data);
       })
-      .then(data => setRegisters(data))
       .catch(error => console.error('Error:', error));
   }, []);
 
   const handleDelete = async ({ params }: { params: Params }) => {
     if (window.confirm('Are you sure you want to delete')) {
       try {
-        const res = await fetch(`/api/register/${params.id}`, {
-          method: 'DELETE',
-        });
+        const res = await axios.delete(`/api/register/${params.id}`);
 
-        if (!res.ok) {
+        if (!res.status) {
           throw new Error('Failed to delete');
         }
 
