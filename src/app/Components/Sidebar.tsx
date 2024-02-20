@@ -24,7 +24,7 @@ function Sidebar() {
           </li>
           <li className="mx-2">
             <Link
-              href="/Dashboard/users"
+              href="/Dashboard/registers"
               className="bg-zinc-700 w-full flex items-center justify-center space-x-3 rounded-lg border border-black/10 shadow-inner shadow-white/10 hover:bg-zinc-500 cursor-pointer"
             >
               <div style={{ display: 'flex', alignItems: 'center' }}>
