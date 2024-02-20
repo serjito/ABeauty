@@ -6,77 +6,34 @@ interface Params {
   id: string;
 }
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Params }
-) {
+export const GET = async (req: NextRequest, { params }: { params: Params }) => {
+  await connectDB();
+  const id = params.id;
   try {
-    connectDB();
-    const registerFound = await Register.findById(params.id);
-    if (!registerFound)
-      return NextResponse.json(
-        {
-          message: 'Register not found',
-        },
-        {
-          status: 404,
-        }
-      );
-    return NextResponse.json(registerFound);
+    const result = await Register.findById(id);
+    return NextResponse.json(result);
   } catch (error) {
-    if (error instanceof Error) {
-      return NextResponse.json(
-        {
-          message: error.message,
-        },
-        {
-          status: 400,
-        }
-      );
-    } else {
-      return NextResponse.json(
-        {
-          message: 'Hubo un error desconocido',
-        },
-        {
-          status: 400,
-        }
-      );
-    }
+    return NextResponse.json({ data: null }, { status: 500 });
   }
-}
+};
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Params }
 ) {
   try {
-    const registerDeleted = await Register.findByIdAndDelete(params.id);
-    if (!registerDeleted)
+    const registerDelete = await Register.findByIdAndDelete(params.id);
+    if (!registerDelete)
       return NextResponse.json(
-        { message: 'Register not found' },
+        {
+          message: 'Task not found',
+        },
         { status: 404 }
       );
-    return NextResponse.json(registerDeleted);
-  } catch (error) {
-    if (error instanceof Error) {
-      return NextResponse.json(
-        {
-          message: error.message,
-        },
-        {
-          status: 400,
-        }
-      );
-    } else {
-      return NextResponse.json(
-        {
-          message: 'Hubo un error desconocido',
-        },
-        {
-          status: 400,
-        }
-      );
-    }
+    return NextResponse.json(registerDelete);
+  } catch (error: any) {
+    return NextResponse.json(error.message, {
+      status: 400,
+    });
   }
 }
 export async function PUT(

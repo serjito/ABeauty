@@ -16,7 +16,7 @@ function Benefits() {
           EN ESTE VÍDEO VAS A LOGRAR:
         </h2>
         <ul className="mx-1">
-          <li>
+          <li className="benefits-list">
             <strong>
               ✅ Llegar a muchas más personas y multiplicar el impacto que
               generas.
@@ -24,14 +24,14 @@ function Benefits() {
             Tu salón tiene potencial, vamos a impulsar tu marca personal, para
             conseguir nuevos clientes y aumentar tu facturación.
           </li>
-          <li>
+          <li className="benefits-list">
             <strong>
               ✅ Un método probado que te permitirá tener tu agenda llena de
               clientes{' '}
             </strong>{' '}
             para que puedas crecer exponencialmente.
           </li>
-          <li>
+          <li className="benefits-list">
             <strong>✅ Aumentar tu ticket medio.</strong>
             Este método está especialmente pensado para que dueños de salones de
             belleza como tú, podáis facturar más, y obtengáis a cambio más
