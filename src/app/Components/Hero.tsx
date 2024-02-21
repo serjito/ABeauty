@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import bg from '../../../public/bg.webp';
+import lourdes from '../../../public/lourdes1.png';
 import { FaPlay } from 'react-icons/fa';
 import Contact from './Contact';
 import { useState } from 'react';
@@ -13,23 +13,24 @@ function Hero() {
     setShowContact(!showContact);
   };
   return (
-    <section className=" w-[95%] max-w-[1200px]  mx-auto my-3 flex flex-col items-center justify-center ">
-      <div className="w-full flex flex-col justify-center items-center my-2 mx-auto">
-        <h1 className="text-center text-3xl px-1 text-black/90 text-pretty font-normal">
+    <section className=" w-[96%] max-w-[1200px]  mx-auto my-3 flex flex-col items-center justify-center ">
+      <div className="w-full flex flex-col justify-center items-center my-2 mx-4">
+        <h1 className="text-center text-4xl mx-0 text-black/90 text-pretty font-semibold">
           Aumenta la{' '}
-          <strong className="text-black">
+          <strong className="text-[#d4a056]">
             rentabilidad y facturación de tu negocio de belleza
           </strong>{' '}
           con nuestro método
         </h1>
-        <h3 className="text-center">
+        <h3 className="text-center text-lg font-semibold my-3 px-2">
           &quot; Potencia tu presencia en línea y atrae a más clientes con la
           ayuda de una agencia de marketing especializada en belleza”.
         </h3>
         <Image
-          src={bg}
+          onClick={toggleContact}
+          src={lourdes}
           alt="Angencia Beauty"
-          className="object-cover h-full w-full"
+          className="object-cover h-full w-[98%]"
         ></Image>
       </div>
       <div className="w-full flex flex-col justify-center items-center">

@@ -116,16 +116,17 @@ p {
 
 p strong {
   color: #d4a056;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: larger;
 }
 h2,
 h3,
 a {
   letter-spacing: 0.1em;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 800;
   padding: 0.3rem;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .benefits-list {
