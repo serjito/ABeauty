@@ -24,16 +24,18 @@ export async function sendEmail(data: EmailData): Promise<Error | boolean> {
   const mailOptions = {
     from: `${data.email}`,
     to: 'sergiomatadi2@gmail.com',
-    subject: 'Nuevo mensaje de contacto Renovat Instalacions SL',
+    subject: 'Nuevo registro de usuario en Agencia Beauty',
+    replyTo: `${data.email}`,
     html: `
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Nuevo mensaje de contacto</title>
+        <title>Nuevo contacto</title>
       </head>
       <body>
-        <h1>Nuevo mensaje de contacto</h1>
-        <p>Nombre y apellidos: ${data.name}${data.telephone}</p>
+        <h1>Nuevo contacto</h1>
+        <p>Nombre: ${data.name}</p>
+        <p>Telefono: ${data.telephone}</p>
         <p>Email: ${data.email}</p>      
       </body>
       </html>

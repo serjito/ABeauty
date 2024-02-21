@@ -9,8 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import Register from '@/models/Register';
-import connectDB from '@/utils/mongoose';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -101,8 +99,8 @@ function Registros() {
         </TableBody>
         <TableFooter>
           <TableRow className="bg-zinc-700">
-            <TableCell colSpan={4}>Total</TableCell>
-            <TableCell className="text-right"> {registers.length}</TableCell>
+            <TableCell colSpan={5}>Total</TableCell>
+            <TableCell className="text-center"> {registers.length}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>
