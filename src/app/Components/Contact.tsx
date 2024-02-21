@@ -48,7 +48,7 @@ const Contact: React.FC<ContactProps> = ({ onClose }) => {
       });
       const response = await axios.post('/api/register', values);
       if (response.status === 200) {
-        router.push('/video');
+        router.push('/acceso-video');
       } else {
         throw new Error('Error al guardar los datos');
       }

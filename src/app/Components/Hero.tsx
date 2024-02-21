@@ -15,7 +15,7 @@ function Hero() {
   return (
     <section className=" w-[96%] max-w-[1200px]  mx-auto my-3 flex flex-col items-center justify-center ">
       <div className="w-full flex flex-col justify-center items-center my-2 mx-4">
-        <h1 className="text-center text-4xl mx-0 text-black/90 text-pretty font-semibold">
+        <h1 className="text-center text-3xl mx-0 text-black/90 text-pretty font-semibold">
           Aumenta la{' '}
           <strong className="text-[#d4a056]">
             rentabilidad y facturación de tu negocio de belleza
