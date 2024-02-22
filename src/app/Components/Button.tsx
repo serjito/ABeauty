@@ -10,7 +10,7 @@ const Button: React.FC<ButtonProps> = ({ onClick }) => {
       <button
         onClick={onClick}
         type="submit"
-        className=" text-white text-xl w-[70%] sm:w-[40%] font-bold px-3 py-4 flex flex-row justify-center sm:justify-center items-center bg-gradient-to-t from-[#9958cc] to-[#6c71e5] shadow-inner  shadow-white/10 rounded-3xl animate-parpadea"
+        className=" text-white text-xl w-[70%] sm:w-[40%] font-bold px-3 py-4 my-3 flex flex-row justify-center sm:justify-center items-center bg-gradient-to-t from-[#9958cc] to-[#6c71e5] shadow-inner  shadow-white/10 rounded-3xl animate-parpadea"
       >
         <FaPlay size={20} className="mr-2" />
         Acceder al vídeo
