@@ -116,7 +116,7 @@ const ContactHome = () => {
               type="submit"
               className=" text-white text-xl font-bold px-8 py-4 planet-backgorud-1 shadow-inner  shadow-white/10 rounded-3xl"
             >
-              Entrar
+              Enviar
             </button>
             <Toaster />
           </div>
