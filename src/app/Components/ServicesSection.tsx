@@ -6,6 +6,7 @@ import google from '../../../public/google-icon.svg';
 import megaphone from '../../../public/megaphone.svg';
 import seo from '../../../public/seo.svg';
 import ServiceCard from './ServiceCard';
+import registered from '../../../public/registered.svg';
 
 const servicesData = [
   {
@@ -16,7 +17,7 @@ const servicesData = [
   },
   {
     title: 'Branding',
-    image: users,
+    image: registered,
     description:
       'Desarrollo de una identidad de marca sólida para destacar tu salón.',
   },

@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import React from 'react';
-import hero from '../../../public/hero.png';
+import hero from '../../../public/hero.webp';
 import { heroblur } from '@/lib/hero.blur';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
