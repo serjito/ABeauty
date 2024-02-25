@@ -2,7 +2,7 @@ import Image from 'next/image';
 import logo from '../../../public/logo.png';
 function Footer() {
   return (
-    <footer className="bottom-0 rounded-3xl shadow bg-gradient-to-t from-[#9958cc] to-[#6c71e5] backdrop-blur-lg w-[98%] mx-auto mb-10">
+    <footer className="bottom-0 rounded-3xl shadow bg-gradient-to-t from-[#9958cc] to-[#6c71e5] backdrop-blur-lg w-[98%] mx-auto mb-10 my-4">
       <div className="w-full mx-autoflex flex-col rounded-3xl p-4 justify-center text-center text-xl">
         <div className="flex items-center justify-center">
           <Image src={logo} alt="Agencia Beauty" height={30} />

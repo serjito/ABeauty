@@ -86,11 +86,13 @@ textarea {
   font-weight: 200;
   font-size: 1.2em;
   color: white;
+  letter-spacing: -0.05em;
 }
 
 input,
 textarea {
   display: block;
+  letter-spacing: -0.05em;
   width: 100%;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
@@ -147,4 +149,23 @@ a {
 }
 .animate-parpadea {
   animation: parpadea 3s ease infinite;
+}
+
+.planet-backgorud-1 {
+  background: radial-gradient(
+    80.36% 80.36% at 18.95% 26.51%,
+    #60dbff 0.56%,
+    #60dbff 9.37%,
+    #5fc4ff 21.1%,
+    #5da9ff 34.46%,
+    #5a82ff 49.03%,
+    #5751ff 64.42%,
+    #5643ff 68.44%,
+    #563df8 74.32%,
+    #552ee5 82.82%,
+    #5315c6 92.87%,
+    #5200ab 100%
+  );
+  background-size: 150% 150%;
+  animation: none;
 }
