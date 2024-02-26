@@ -44,9 +44,9 @@ function Sidebar() {
           </li>
           <li className="mx-2">
             <Link
-              href="/Dashboard/registers"
+              href="/Dashboard/users/"
               className={` w-full flex items-center justify-center space-x-3 rounded-lg hover:bg-zinc-500 cursor-pointer ${
-                isActive('/Dashboard/registers') ? 'bg-zinc-700 text-white' : ''
+                isActive('/Dashboard/users') ? 'bg-zinc-700 text-white' : ''
               }`}
             >
               <div
